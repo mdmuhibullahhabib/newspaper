@@ -1,79 +1,90 @@
 import React from 'react'
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { Search, Menu, Globe, User } from "lucide-react";
 
 export default function Navbar() {
-  const navItems = [
-    { name: "জাতীয়", path: "/category/national" },
-    { name: "আন্তর্জাতিক", path: "/category/international" },
-    { name: "খেলা", path: "/category/sports" },
-    { name: "প্রযুক্তি", path: "/category/technology" },
-    { name: "বিনোদন", path: "/category/entertainment" },
-  ];
-
   return (
-    <header className="bg-base-100 border-b sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4">
+    <header className="border-b bg-white">
 
-        {/* Top Navbar */}
-        <div className="flex items-center justify-between h-16">
+      {/* ===== TOP BAR ===== */}
+      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
 
-          {/* Left: Logo */}
-          <NavLink
-            to="/"
-            className="text-3xl font-extrabold text-red-600 tracking-tight"
-          >
-            Daily News
-          </NavLink>
+        {/* Logo */}
+        <Link to="/" className="flex items-center gap-1">
+          <span className="text-3xl font-extrabold tracking-tight">
+            প্রথম
+            <span className="text-red-600">আলো</span>
+          </span>
+        </Link>
 
-          {/* Center: Desktop Menu */}
-          <nav className="hidden lg:flex gap-6 text-[16px] font-medium">
-            {navItems.map((item) => (
-              <NavLink
-                key={item.name}
-                to={item.path}
-                className={({ isActive }) =>
-                  isActive
-                    ? "text-red-600 border-b-2 border-red-600 pb-1"
-                    : "hover:text-red-600 pb-1"
-                }
+        {/* Top Headlines */}
+        <div className="hidden lg:flex gap-6">
+          {[1, 2, 3].map((item) => (
+            <div key={item} className="flex items-center gap-2 max-w-[220px]">
+              <img
+                src="https://via.placeholder.com/60x40"
+                alt=""
+                className="w-14 h-10 object-cover"
+              />
+              <p className="text-xs leading-snug line-clamp-2 hover:text-red-600 cursor-pointer">
+                চায়ের দোকান থেকে মেডিকেল কলেজ: ইমনের...
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* ===== MENU BAR ===== */}
+      <div className="border-t border-b">
+        <div className="max-w-7xl mx-auto px-4 flex items-center justify-between h-12">
+
+          {/* Categories */}
+          <nav className="flex items-center gap-5 text-sm font-medium">
+            {[
+              "সর্বশেষ",
+              "বাংলাদেশ",
+              "রাজনীতি",
+              "বিশ্ব",
+              "বাণিজ্য",
+              "মতামত",
+              "খেলা",
+              "বিনোদন",
+              "চাকরি",
+              "জীবনযাপন",
+              "ভিডিও",
+            ].map((item) => (
+              <Link
+                key={item}
+                to="#"
+                className="hover:text-red-600 whitespace-nowrap"
               >
-                {item.name}
-              </NavLink>
+                {item}
+              </Link>
             ))}
           </nav>
 
-          {/* Right: Search + Mobile */}
-          <div className="flex items-center gap-2">
+          {/* Actions */}
+          <div className="flex items-center gap-5 text-sm">
+            <button className="flex items-center gap-1 hover:text-red-600">
+              <Search size={18} />
+              <span>খুঁজুন</span>
+            </button>
 
-            {/* Search (Desktop) */}
-            <div className="hidden lg:block">
-              <input
-                type="text"
-                placeholder="খুঁজুন..."
-                className="input input-bordered input-sm w-40"
-              />
-            </div>
+            <button className="hover:text-red-600">ই-পেপার</button>
 
-            {/* Mobile Menu */}
-            <div className="dropdown dropdown-end lg:hidden">
-              <label tabIndex={0} className="btn btn-ghost text-xl">
-                ☰
-              </label>
-              <ul
-                tabIndex={0}
-                className="menu dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-              >
-                {navItems.map((item) => (
-                  <li key={item.name}>
-                    <NavLink to={item.path}>{item.name}</NavLink>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <button className="flex items-center gap-1 hover:text-red-600">
+              <Globe size={16} /> Eng
+            </button>
 
+            <button className="flex items-center gap-1 hover:text-red-600">
+              <User size={16} /> Login
+            </button>
+
+            <button className="hover:text-red-600">
+              <Menu size={20} />
+            </button>
           </div>
         </div>
-
       </div>
     </header>
   );
