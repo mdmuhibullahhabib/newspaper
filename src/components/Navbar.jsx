@@ -15,7 +15,6 @@ export default function Navbar() {
             প্রথম
             <span className="text-red-600">আলো</span>
             <span className="text-red-600">আলো</span>
-            <span className="text-red-600">আলো</span>
           </span>
         </Link>
 
